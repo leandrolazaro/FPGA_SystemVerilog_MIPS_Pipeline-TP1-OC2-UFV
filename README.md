@@ -20,10 +20,11 @@ To perform the job correctly, you must:
 
 To run, just double-click the "make.py" file.
 
-**![](https://lh3.googleusercontent.com/NXT9BuIG0IPm3m0CNUjzwH_fJwejijwk6oN4IfZk6i5iyEe51KjBmMeG-U9c9T6hFK3GsUu26n6870IhsganaMJY4biuvzrBm5_bs28D_fvGueDcSW3TywyMCmPqnQ)**
+**![](repository/images/terminal.png)**  
 --
-After transferring the synthesized file to the FPGA via Quartus Prime, the board should behave as follows:
-**![](https://lh4.googleusercontent.com/Ioqm5VQQNM0tBYlb54g0spDSuwlhWlDgLFcArlO1gjid1ZkZm3kGKLKg3nJ5bjB_pM1GzTrBFlWOMtkGUeWfEPeXvfcXC0PkedJNl2gRVuiIHpDfukloQjz7GPDTFw)**
+After transferring the synthesized file to the FPGA via Quartus Prime, the board should behave as follows:  
+
+**![](repository/images/mips.png)**  
 
 ## The choice of the description language and the improvements obtained
 We used SystemVerilog language because it is less verbose, has an amazing ability to describe combinational logic in a simple way and allows to create specific always blocks, which allows synthesizing the code without errors compared to basic Verilog.
@@ -46,13 +47,13 @@ As there are many modules, and the next practical work will be to develop the sa
 
 All work files are divided into folders with the same name of the stages inside the color folder, and each stage has a code file with its name, used to reference the modules and encapsulate the stage. The only exceptions are: the processor driver, a library (called a package in the SystemVerilog language) that contains all processor constants as the opcode of instructions and generic modules (such as multiplexers and etc). In addition, there is a folder with fpga integration modules that will be explained in the topic of FPGA Integration, and a module that encapsulates the entire MIPS.
 
-**![](https://lh6.googleusercontent.com/-kTlCVQXIl1E51X_1p_0SYRXyyMdYVYtSWH_8p3gJyyCWn-TMuQRhGqYvCjo5ouJKRXkrzQcX-1AeyfGX3OMVwhVnz8I_c6uBoU7gZ7Mmgtjnydic3pufPHLwvr8gw)**
+**![](repository/images/diagram.png)**
 
 ### The general controller and MIPS constants
 The libMips file contains all constants used in the processor, such as the opcode of each instruction, funcs, ALU and MDLU control codes, and so on, for the purpose of improving the readability and rewritability of the code.
 The general mips controller, called controller, receives the six least significant bits of each Instruction-Fetch instruction, that is, the opcode and generates the control signals, preparing the processor to perform some operation.
 
-**![](https://lh4.googleusercontent.com/nIOhg89YY_6LBdpivBZJlfiZuuK0gujr1JlHXrXYj1qHTwJx6B4ScJOiYImwLVctIl2nzP91ZzKxxoc4mQtHxwhhNRGmraHtxyPipxIuryUN1Laq_1vV79N23no7a_6DHcVT4Ik)**
+**![](repository/images/r_signal.png)**
 ### The Instruction-Fetch stage
 
 The stage seeks the correct instruction and passes it to the next stage, whether it is a jump or not. As control signals, Instruction-Fetch, henceforth IF, receives jump and branchC. As outputs, IFs have the 32 bits corresponding to the instruction being / will be executed. In addition, the stage has a memory with all 256 instructions contained in the processor, and an IO to display them on the FPGA.
